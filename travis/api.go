@@ -26,7 +26,15 @@ type Build struct {
 }
 
 type TravisJobs struct {
-
+    Id	int `json:"id"`
+    Number	string `json:"number"`
+    State	string `json:"state"`
+    Started_at	string `json:"started_at"`
+    Finished_at	string `json:"finished_at"`
+    Queue	string `json:"queue"`
+    Created_at	string `json:"created_at"`
+    Updated_at	string `json:"updated_at"`
+    Private	bool `json:"private"`
 }
 
 type Commit struct {

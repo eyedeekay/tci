@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/henrikhodne/tci/travis"
+	"github.com/eyedeekay/tci/travis"
 	"os/exec"
 	"regexp"
 	"strings"
