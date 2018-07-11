@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/eyedeekay/tci/travis"
 	"strings"
-    "strconv"
+    //"strconv"
 )
 
 func init() {
@@ -30,7 +30,7 @@ func log() {
 	}
 
     jobsResp, _ := client.GetJobs(repoResp.Repository.LastBuildID)
-	if jobsResp == (travis.BuildResponse{}) {
+	if jobsResp == (travis.JobsResponse{}) {
 		println("Couldn't find build.")
 		return
 	}
