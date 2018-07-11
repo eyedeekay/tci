@@ -18,10 +18,15 @@ type Build struct {
 	ID          int    `json:"id"`
 	Number      string `json:"number"`
 	State       string `json:"state"`
+    Jobs        TravisJobs   `json:"jobs"`
 	PullRequest bool   `json:"pull_request"`
 	Duration    int    `json:"duration"`
 	StartedAt   string `json:"started_at"`
 	FinishedAt  string `json:"finished_at"`
+}
+
+type TravisJobs struct {
+
 }
 
 type Commit struct {
@@ -95,7 +100,7 @@ func (c TravisClient) GetBuild(id int) (BuildResponse, error) {
 
 func NewRequest(c TravisClient, path string, params string) ([]byte, error) {
 	client := c.client
-	url := fmt.Sprintf("%s/%s?%s", c.BaseURL, path, params)
+	url := fmt.Sprintf("%s/%s?%s?include=build.commit", c.BaseURL, path, params)
 
 	var body []byte
 

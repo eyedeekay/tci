@@ -33,6 +33,7 @@ func log() {
 
 	fmt.Printf(bold("Build #%s: %s\n"), build.Number, strings.Split(commit.Message, "\n")[0])
 	printInfo("State", build.State)
+    printInfo("Jobs", build.Jobs)
 	if build.PullRequest {
 		printInfo("Type", "pull request")
 	} else {
