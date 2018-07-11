@@ -18,7 +18,6 @@ type Build struct {
 	ID          int    `json:"id"`
 	Number      string `json:"number"`
 	State       string `json:"state"`
-    Jobs        TravisJobs   `json:"jobs"`
 	PullRequest bool   `json:"pull_request"`
 	Duration    int    `json:"duration"`
 	StartedAt   string `json:"started_at"`
@@ -41,6 +40,10 @@ type Commit struct {
 	Message    string `json:"message"`
 	Branch     string `json:"branch"`
 	CompareURL string `json:"compare_url"`
+}
+
+type JobsResponse struct {
+	Jobs  TravisJob  `json:"jobs"`
 }
 
 type BuildResponse struct {
@@ -104,6 +107,18 @@ func (c TravisClient) GetBuild(id int) (BuildResponse, error) {
 	err = json.Unmarshal(body, &build)
 
 	return build, err
+}
+
+func (c TravisClient) GetJobs(id int) (JobsResponse, error) {
+	body, err := NewRequest(c, fmt.Sprintf("builds/%d/jobs", id), "")
+	if err != nil {
+		return BuildResponse{}, err
+	}
+
+	var jobs JobsResponse
+	err = json.Unmarshal(body, &jobs)
+
+	return jobs, err
 }
 
 func NewRequest(c TravisClient, path string, params string) ([]byte, error) {

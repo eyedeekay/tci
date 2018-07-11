@@ -29,12 +29,17 @@ func log() {
 		return
 	}
 
+    jobsResp, _ := client.GetJobs(repoResp.Repository.LastBuildID)
+	if jobsResp == (travis.BuildResponse{}) {
+		println("Couldn't find build.")
+		return
+	}
+
 	build := buildResp.Build
 	commit := buildResp.Commit
 
 	fmt.Printf(bold("Build #%s: %s\n"), build.Number, strings.Split(commit.Message, "\n")[0])
 	printInfo("State", build.State)
-    printInfo("Job ID", strconv.Itoa(build.Jobs.Id))
 	if build.PullRequest {
 		printInfo("Type", "pull request")
 	} else {
