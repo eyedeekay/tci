@@ -31,7 +31,7 @@ func log() {
 
     jobsResp, _ := client.GetJobs(repoResp.Repository.LastBuildID)
 	if jobsResp == (travis.JobsResponse{}) {
-		println("Couldn't find build.")
+		println("Couldn't find jobs.")
 		return
 	}
 
