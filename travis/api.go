@@ -112,7 +112,7 @@ func (c TravisClient) GetBuild(id int) (BuildResponse, error) {
 func (c TravisClient) GetJobs(id int) (JobsResponse, error) {
 	body, err := NewRequest(c, fmt.Sprintf("builds/%d/jobs", id), "")
 	if err != nil {
-		return BuildResponse{}, err
+		return JobsResponse{}, err
 	}
 
 	var jobs JobsResponse
