@@ -29,13 +29,13 @@ func log() {
 		return
 	}
 
-    jobsResp, _ := client.GetJobs(repoResp.Repository.LastBuildID)
+	build := buildResp.Build
+
+    jobsResp, _ := client.GetJobs(build.ID)
 	if jobsResp == (travis.JobsResponse{}) {
 		println("Couldn't find jobs.")
 		return
 	}
-
-	build := buildResp.Build
 	commit := buildResp.Commit
 
 	fmt.Printf(bold("Build #%s: %s\n"), build.Number, strings.Split(commit.Message, "\n")[0])
