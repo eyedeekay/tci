@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/eyedeekay/tci/travis"
 	"strings"
+    "strconv"
 )
 
 func init() {
@@ -33,7 +34,7 @@ func log() {
 
 	fmt.Printf(bold("Build #%s: %s\n"), build.Number, strings.Split(commit.Message, "\n")[0])
 	printInfo("State", build.State)
-    printInfo("Job ID", build.Jobs.Id)
+    printInfo("Job ID", strconv.Itoa(build.Jobs.Id))
 	if build.PullRequest {
 		printInfo("Type", "pull request")
 	} else {
