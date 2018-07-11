@@ -43,7 +43,7 @@ type Commit struct {
 }
 
 type JobsResponse struct {
-	Jobs  TravisJob  `json:"jobs"`
+	Jobs  TravisJobs  `json:"jobs"`
 }
 
 type BuildResponse struct {
